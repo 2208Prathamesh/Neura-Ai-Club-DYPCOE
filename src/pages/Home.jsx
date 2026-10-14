@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Hero3D from '../components/Hero3D.jsx'
-import { domains } from '../data/club.js'
+import domains from '../data/domains.json'
+import site from '../data/site.json'
 import { asset } from '../utils.js'
 
 const reduced =
@@ -46,7 +47,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: BASE + 1, duration: 0.8 }}
           >
-            The AI community of the Department of Information Technology
+            {site.tagline}
           </motion.p>
           <motion.div
             className="hero__cta"

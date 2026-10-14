@@ -6,6 +6,7 @@ import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Hierarchy from './pages/Hierarchy.jsx'
 import Events from './pages/Events.jsx'
+import Gallery from './pages/Gallery.jsx'
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/hierarchy" element={<Hierarchy />} />
           <Route path="/events" element={<Events />} />
+          <Route path="/gallery" element={<Gallery />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </main>

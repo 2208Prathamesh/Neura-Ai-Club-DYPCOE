@@ -1,0 +1,22 @@
+{
+  "lead": "Neura is the AI club of the Department of Information Technology at D. Y. Patil College of Engineering, Akurdi, Pune. We bring students together to explore artificial intelligence, build things and learn from one another.",
+  "vision": {
+    "eyebrow": "Our Vision",
+    "title": "Intelligence, built together",
+    "quote": "To nurture a community of student innovators at DYPCOE who understand, build and apply artificial intelligence responsibly, turning curiosity into skill and skill into solutions that matter."
+  },
+  "pillars": [
+    {
+      "title": "Learn",
+      "text": "Hands-on sessions that turn AI concepts into working understanding."
+    },
+    {
+      "title": "Build",
+      "text": "Student-led projects that apply machine learning and generative AI to real problems."
+    },
+    {
+      "title": "Lead",
+      "text": "A community where members grow into confident, responsible technologists."
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import Logo from '../components/Logo.jsx'
-import { domains } from '../data/club.js'
+import domains from '../data/domains.json'
+import about from '../data/about.json'
 
 const rise = (delay = 0) => ({
   initial: { opacity: 0, y: 30 },
@@ -9,11 +10,7 @@ const rise = (delay = 0) => ({
   transition: { duration: 0.6, delay, ease: 'easeOut' },
 })
 
-const pillars = [
-  { title: 'Learn', text: 'Hands-on sessions that turn AI concepts into working understanding.' },
-  { title: 'Build', text: 'Student-led projects that apply machine learning and generative AI to real problems.' },
-  { title: 'Lead', text: 'A community where members grow into confident, responsible technologists.' },
-]
+const { pillars, vision, lead } = about
 
 export default function About() {
   return (
@@ -23,26 +20,18 @@ export default function About() {
           <Logo size={110} />
           <p className="eyebrow">About us</p>
           <h1>Neura AI Club</h1>
-          <p className="lead">
-            Neura is the AI club of the Department of Information Technology at D. Y. Patil College of
-            Engineering, Akurdi, Pune. We bring students together to explore artificial intelligence,
-            build things and learn from one another.
-          </p>
+          <p className="lead">{lead}</p>
         </motion.div>
       </section>
 
       <section className="section container" id="vision">
         <motion.div {...rise()} className="vision">
           <div className="vision__label">
-            <p className="eyebrow">Our Vision</p>
-            <h2>Intelligence, built together</h2>
+            <p className="eyebrow">{vision.eyebrow}</p>
+            <h2>{vision.title}</h2>
           </div>
           <div className="vision__body">
-            <p className="vision__quote">
-              To nurture a community of student innovators at DYPCOE who understand, build and apply
-              artificial intelligence responsibly, turning curiosity into skill and skill into
-              solutions that matter.
-            </p>
+            <p className="vision__quote">{vision.quote}</p>
             <div className="grid grid--3">
               {pillars.map((p, i) => (
                 <motion.div key={p.title} className="card" {...rise(i * 0.1)}>
