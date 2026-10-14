@@ -21,6 +21,9 @@ export default function Footer() {
           <Link to="/about">About</Link>
           <Link to="/hierarchy">Hierarchy</Link>
           <Link to="/events">Events</Link>
+          <a href="https://instagram.com/aiclub_dypcoe?obrf=MWVmaDlwaTlrc2JpNA%3D%3D" target="_blank" rel="noreferrer">
+            Instagram
+          </a>
         </nav>
       </div>
       <p className="footer__copy">© {new Date().getFullYear()} Neura AI Club · DYPCOE</p>
