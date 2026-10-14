@@ -26,7 +26,13 @@ export const leads = [
 
 // Source: AI Club Coordinators PDF
 export const coordinators = [
+  { domain: 'Web Development', members: ['Sanika Takare'] },
   { domain: 'Data Science', members: ['Vedika Chaudhari', 'Sanjeev'] },
+  { domain: 'AI & Machine Learning (AIML)', members: ['Sarvesh Channewar', 'Shreyash'] },
+  { domain: 'Generative AI (GenAI)', members: ['Krishna Tripathi', 'Anushka Nayarkar', 'Mohit'] },
+  { domain: 'Finance', members: ['Raghav Salunke', 'Pranjal More'] },
+  { domain: 'Documentation', members: ['Aditi Bodke', 'Vishwajit Dagabaj', 'Tanisha Lal'] },
+  { domain: 'Media', members: ['Tirthkak Patil','Ganesh'] },
   {
     domain: 'Events & Activities',
     members: ['Ruchika More', 'Swarupa Shingare', 'Ayush Pardhi', 'Hemanshu', 'Manmath'],
@@ -35,14 +41,8 @@ export const coordinators = [
     domain: 'Public Relations (PR)',
     members: ['Ritu Ahlawat', 'Mohan', 'Aryan Uttarwar', 'Samarth', 'Nidhish', 'Ajay Ingle'],
   },
-  { domain: 'Editing', members: ['Ganesh'] },
+  // { domain: 'Editing', members: ['Ganesh'] },
   { domain: 'Design', members: ['Riddhi', 'Pranali'] },
-  { domain: 'Web Development', members: ['Sanika Takare'] },
-  { domain: 'Generative AI (GenAI)', members: ['Krishna Tripathi', 'Anushka Nayarkar', 'Mohit'] },
-  { domain: 'AI & Machine Learning (AIML)', members: ['Sarvesh Channewar', 'Shreyash'] },
-  { domain: 'Media', members: ['Tirthkak Patil'] },
-  { domain: 'Documentation', members: ['Aditi Bodke', 'Vishwajit Dagabaj', 'Tanisha Lal'] },
-  { domain: 'Finance', members: ['Raghav Salunke', 'Pranjal More'] },
 ]
 
 // Add events here. Shape:

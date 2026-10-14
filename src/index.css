@@ -329,6 +329,15 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; letter-spacing
   margin-bottom: 12px; font-family: var(--font-display); font-size: 0.68rem;
   letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
 }
+.domain__heading { margin: 0; }
+.domain__toggle {
+  display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 0; border: 0; background: transparent; text-align: left;
+}
+.domain__toggle:focus-visible { outline: 2px solid var(--p-400); outline-offset: 5px; border-radius: 4px; }
+.domain__toggle .domain__title { flex: 1; margin-bottom: 14px; }
+.domain__chevron { color: var(--p-300); transition: transform 0.2s ease; }
+.domain__chevron--expanded { transform: rotate(180deg); }
 .domain__title {
   display: flex; align-items: center; gap: 12px; margin-bottom: 14px; font-size: 1rem; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--p-100);

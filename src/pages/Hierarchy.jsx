@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import PersonCard from '../components/PersonCard.jsx'
 import { faculty, president, vicePresident, leads, coordinators } from '../data/club.js'
@@ -29,6 +30,10 @@ function Tier({ index, label, title, children }) {
 const leadsByDomain = new Map(leads.map((lead) => [lead.domain, lead]))
 
 export default function Hierarchy() {
+  const [collapsedDomains, setCollapsedDomains] = useState(() =>
+    Object.fromEntries(coordinators.map(({ domain }) => [domain, true])),
+  )
+
   return (
     <>
       <section className="page-hero">
@@ -60,39 +65,66 @@ export default function Hierarchy() {
 
         <Tier index="3" label="Domain teams" title="Leads & Coordinators">
           <div className="domains">
-            {coordinators.map((c) => (
-              <div key={c.domain} className="domain">
-                <motion.h3 className="domain__title" {...rise()}>
-                  {c.domain}
-                  <span>{c.members.length + (leadsByDomain.get(c.domain)?.members.length ?? 0)}</span>
-                </motion.h3>
-                {leadsByDomain.has(c.domain) && (
-                  <div className="domain__group">
-                    <h4 className="domain__label">Leads</h4>
-                    <div className="grid grid--people-sm">
-                      {leadsByDomain.get(c.domain).members.map((m, i) => (
-                        <PersonCard
-                          key={m}
-                          name={m}
-                          role={leadsByDomain.get(c.domain).role}
-                          size="sm"
-                          accent
-                          delay={(i % 5) * 0.05}
-                        />
-                      ))}
+            {coordinators.map((c, index) => {
+              const isExpanded = !collapsedDomains[c.domain]
+              const contentId = `domain-content-${index}`
+
+              return (
+                <div key={c.domain} className="domain">
+                  <motion.h3 className="domain__heading" {...rise()}>
+                    <button
+                      className="domain__toggle"
+                      type="button"
+                      aria-expanded={isExpanded}
+                      aria-controls={contentId}
+                      onClick={() =>
+                        setCollapsedDomains((current) => ({
+                          ...current,
+                          [c.domain]: !current[c.domain],
+                        }))
+                      }
+                    >
+                      <span className="domain__title">
+                        {c.domain}
+                        <span>{c.members.length + (leadsByDomain.get(c.domain)?.members.length ?? 0)}</span>
+                      </span>
+                      <span
+                        className={`domain__chevron ${isExpanded ? 'domain__chevron--expanded' : ''}`}
+                        aria-hidden="true"
+                      >
+                        ▾
+                      </span>
+                    </button>
+                  </motion.h3>
+                  <div id={contentId} hidden={!isExpanded}>
+                    {leadsByDomain.has(c.domain) && (
+                      <div className="domain__group">
+                        <h4 className="domain__label">Leads</h4>
+                        <div className="grid grid--people">
+                          {leadsByDomain.get(c.domain).members.map((m, i) => (
+                            <PersonCard
+                              key={m}
+                              name={m}
+                              role={i === 1 ? 'Co-Lead' : leadsByDomain.get(c.domain).role}
+                              accent
+                              delay={(i % 5) * 0.05}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    <div className="domain__group">
+                      <h4 className="domain__label">Coordinators</h4>
+                      <div className="grid grid--people-sm">
+                        {c.members.map((m, i) => (
+                          <PersonCard key={m} name={m} role="Coordinator" size="sm" delay={(i % 5) * 0.05} />
+                        ))}
+                      </div>
                     </div>
                   </div>
-                )}
-                <div className="domain__group">
-                  <h4 className="domain__label">Coordinators</h4>
-                  <div className="grid grid--people-sm">
-                    {c.members.map((m, i) => (
-                      <PersonCard key={m} name={m} role="Coordinator" size="sm" delay={(i % 5) * 0.05} />
-                    ))}
-                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </Tier>
       </div>
