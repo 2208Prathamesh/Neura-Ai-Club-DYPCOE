@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
@@ -7,6 +7,7 @@ export default function NotFound() {
   const [scanning, setScanning] = useState(false)
   const [scanStatus, setScanStatus] = useState('ANOMALY_CONFIRMED')
   const [coords, setCoords] = useState({ x: 0, y: 0 })
+  const mouseRafRef = useRef(null)
 
   // Listen for keyboard 'H' to return Home
   useEffect(() => {
@@ -18,6 +19,12 @@ export default function NotFound() {
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [navigate])
+
+  useEffect(() => {
+    return () => {
+      if (mouseRafRef.current) cancelAnimationFrame(mouseRafRef.current)
+    }
+  }, [])
 
   const handleReScan = () => {
     if (scanning) return
@@ -33,7 +40,11 @@ export default function NotFound() {
     const rect = e.currentTarget.getBoundingClientRect()
     const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20
     const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20
-    setCoords({ x, y })
+    if (mouseRafRef.current) return
+    mouseRafRef.current = requestAnimationFrame(() => {
+      setCoords({ x, y })
+      mouseRafRef.current = null
+    })
   }
 
   return (
@@ -109,16 +120,6 @@ export default function NotFound() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.35 }}
         >
-          <button
-            type="button"
-            className={`btn btn--ghost not-found__btn-scan ${scanning ? 'is-loading' : ''}`}
-            onClick={handleReScan}
-            disabled={scanning}
-            id="btn-rescan-neural"
-          >
-            <span className="scan-icon">⚡</span>
-            {scanning ? 'Scanning Matrix...' : 'Re-ping Neural Mesh'}
-          </button>
 
           <Link to="/" className="btn btn--primary" id="btn-return-home">
             <span>Return to Neural Core</span>
