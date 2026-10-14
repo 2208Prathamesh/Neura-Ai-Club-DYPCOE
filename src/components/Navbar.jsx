@@ -8,6 +8,7 @@ const links = [
   { to: '/hierarchy', label: 'Hierarchy' },
   { to: '/events', label: 'Events' },
   { to: '/gallery', label: 'Gallery' },
+  { to: '/contact', label: 'Contact' },
 ]
 
 export default function Navbar() {

@@ -7,6 +7,8 @@ import About from './pages/About.jsx'
 import Hierarchy from './pages/Hierarchy.jsx'
 import Events from './pages/Events.jsx'
 import Gallery from './pages/Gallery.jsx'
+import Contact from './pages/Contact.jsx'
+import NotFound from './pages/NotFound.jsx'
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
@@ -28,7 +30,9 @@ export default function App() {
           <Route path="/hierarchy" element={<Hierarchy />} />
           <Route path="/events" element={<Events />} />
           <Route path="/gallery" element={<Gallery />} />
-          <Route path="*" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/404" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
